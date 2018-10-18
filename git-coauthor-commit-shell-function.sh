@@ -1,3 +1,7 @@
+#!/bin/bash
+# Shell function/alias for easy multi-author commits.
+# Usage: `$ cgap {COMMIT_MESSAGE}`
+
 function git_add_commit_push_catstones {
   git add -A
 git commit -m "$1
