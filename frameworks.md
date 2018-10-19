@@ -1,3 +1,5 @@
+# Frameworks for Real-Time Collaboration
+
 ## Yjs
 - a JS framework for offline-first p2p shared editing on structured data like text, richtext, json, or XML.
 - Yjs takes care of resolving conflicts on shared data
@@ -5,7 +7,7 @@
 - near real-time (NRT) collaboration
   - collaborators apply changes to their local copy, while concurrently sending and receiving notifications of those changes via some communication protocol.
   - eg: Google Docs uses Operation Transformation (OT) and a client-server infrastructure to resolve conflicts
-  - Yjs doesn't use OT
+  - Yjs doesn't use CRDT instead of OT
 
 ### Connectors: (communication protocol to propagate changes to clients)
 - WebRTC
@@ -58,3 +60,4 @@
 - uses ShareDB
   - ShareDB is a realtime DB backend based on Operation Transform (OT) of JSON documents
     - uses WebSocket
+  - not p2p
