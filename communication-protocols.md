@@ -18,6 +18,7 @@
 - JS libraries
   - PeerJS
 
+
 ## WebSocket
 - use a single TCP connection
   - only supports reliable, in-order transport
@@ -59,3 +60,6 @@
 - does not support Quality of Service (QoS)
   - assured delivery of messages has to be built on top of the XMPP layer
 - specializes in text-based communication
+
+
+## Socket.IO
