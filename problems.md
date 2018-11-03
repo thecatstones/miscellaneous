@@ -15,3 +15,6 @@
 
 ## Heroku
 - It took a while to get Heroku to work correctly with Webpack -- there is a lot of conflicting advice out there on the internet about the proper way to deploy a Node app to Heroku.
+
+## Repl 
+- How to handle multi-line input from editor consistently across various languages?
