@@ -18,3 +18,11 @@
 
 ## Repl 
 - How to handle multi-line input from editor consistently across various languages?
+
+## Which protocol(s) to use?
+- WebSockets
+- http1
+- http2 (can't use with WebSockets)
+- WebRTC
+= XMPT
+- SSE (Server Sent Events) (EventSource)
