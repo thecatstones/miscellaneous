@@ -1,4 +1,4 @@
-"why we chose to have one instance per container instead of multiple repl processes in a single container"?
+### "why we chose to have one instance per container instead of multiple repl processes in a single container"?
   - strong isolation of containers so that instances of the application do not mix
   - easily configure the maximum allowed memory and CPU for each instance
   - one malicious actor can only take down one instance at a time, the attacker will not have access to other instances
@@ -10,6 +10,10 @@ Room #2 would have a copy of these same apps, but it would be running on a separ
 When the users of the room select a language, the container will start a REPL process for that language.
 
 We have decided to create a separate container for every room for a variety of reasons.
+
+> "It is generally recommended that you separate areas of concern by using one service per container. That service may fork into multiple processes. It’s ok to have multiple processes, but to get the most benefit out of Docker, avoid one container being responsible for multiple aspects of your overall application."
+[https://docs.docker.com/config/containers/multi-service_container/]
+
 First of all, it greatly enhances the security of our app.
 If a malicious user were to try to damage our app, any negative effects would be isolated within a single container. 
 The only other users that would be affected would be the users in the same room.
@@ -55,6 +59,6 @@ Instead of running the containers directly on our server, we could create a virt
 This way, even if the security of a container was compromised, the malicious user would still have to get through the virtual machine before they could affect the host.
 While this would be more secure, it would also increase the complexity and resource costs of our app.
 
-Another way of providing strong container isolation from our host kernel is to use a container runtime sandbox. A container runtime sandbox intercepts application system calls (by blocking system calls that attempts privileged access) and acts as the guest Kernel, without the need for translation through virtualized hardware. Just like within a VM, an application running in the sandbox gets its own kernel, distinct from the host and other sandboxes. It provides a flexible resource footprint and lower fixed cost than a full VM. However, it comes with a higher per-system call overhead and lower application compatibility. [https://cloud.google.com/blog/products/gcp/open-sourcing-gvisor-a-sandboxed-container-runtime]
+Another way of providing strong container isolation from our host kernel is to use a container runtime sandbox. A container runtime sandbox intercepts application system calls (by blocking system calls that attempt privileged access) and acts as the guest Kernel, without the need for translation through virtualized hardware. Just like within a VM, an application running in the sandbox gets its own kernel, distinct from the host and other sandboxes. It provides a flexible resource footprint and lower fixed cost than a full VM. However, it comes with a higher per-system call overhead and lower application compatibility. [https://cloud.google.com/blog/products/gcp/open-sourcing-gvisor-a-sandboxed-container-runtime]
 
 For now, we have decided that creating separate containers that run on our main server provides a good balance of security and practical viability.
