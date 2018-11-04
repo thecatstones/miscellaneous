@@ -13,8 +13,8 @@ The API would also provide access to the standard streams of the child process: 
 
 This is a problem because once the input stream is closed, we may not be able to evaluate any additional lines of code. While there are ways that we can potentially manipulate how each REPL child process work, it has to be done manually and do not fit our use case of supporting more than one language for REPL.
 
-### Interacting wiht a Pseudo-terminal
-Creating an instance of pseudo-terminal that interacts with the REPL child process solves this problem. A pseudo-terminal emualates a command line interface within our application, so that our application will *think* that it is interacting with a terminal [https://github.com/Microsoft/node-pty] and is able to send control sequences (such as Ctrl-C). 
+### Interacting with a Pseudo-terminal
+Creating an instance of pseudo-terminal that interacts with the REPL child process solves this problem. A pseudo-terminal emulates a command line interface within our application, so that our application will *think* that it is interacting with a terminal [https://github.com/Microsoft/node-pty] and is able to send control sequences (such as Ctrl-C). 
 
 > "Anything that is written on the master end is provided to the process on the slave end as though it was input typed on a terminal. For example, writing the interrupt character (usually control-C) to the master device would cause an interrupt signal (SIGINT) to be generated for the foreground process group that is connected to the slave." [http://man7.org/linux/man-pages/man7/pty.7.html]
 
