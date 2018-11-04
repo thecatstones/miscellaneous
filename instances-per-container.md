@@ -16,11 +16,17 @@ The only other users that would be affected would be the users in the same room.
 Even if a user were to delete all the files on the file system, or bring down the server hosting the room, it wouldn't be a major problem.
 As soon as the main server becomes aware of the problem, it could just shut down that container and create a new one.
 
-Another benefit of having separate containers is that it allows us to easily place limits on the maximum amount of resources each room is able to use.
+Another benefit of having separate containers is that it allows us to easily place limits on the maximum amount of resources each room is able to use. 
+
+> "If an application were to consume an excessive amount of CPU resources, or if a buggy application were to have a memory leak, then the application's use of resources would likely impact any other applications running on the server."
+[https://searchservervirtualization.techtarget.com/tip/Weighing-the-pros-and-cons-of-application-containers]
+
 For example, we could place a maximum limit of 100MB of memory and 5% processing power on every container.
 Specifying limits would allow us to easily calculate the maximum amount of rooms that our main server would be able to run at the same time.
 If we needed to scale up our app, we would have a good idea of the amount of additional resources our app would require.
 These limits also ensure that if a user executes code that consumes a large amount of resources, such as an infinite loop, then any drops in performance or stability will be isolated to their room, and won't significantly affect the host server.
+
+> "Scaling containers horizontally is much easier if the container is isolated to a single function. Having a single function per container allows the container to be easily re-used for other projects or purposes." [https://devops.stackexchange.com/questions/447/why-it-is-recommended-to-run-only-one-process-in-a-container]
 
 We have also explored other alternatives to having a separate contained app per room.
 One possibility is to not use containers at all, and just spawn a REPL process (like IRB) for every room that runs directly on  the server.
@@ -48,5 +54,7 @@ For even better security, we could make use of *both* containers and a virtual m
 Instead of running the containers directly on our server, we could create a virtual machine on our server that would be responsible for running the containers.
 This way, even if the security of a container was compromised, the malicious user would still have to get through the virtual machine before they could affect the host.
 While this would be more secure, it would also increase the complexity and resource costs of our app.
+
+Another way of providing strong container isolation from our host kernel is to use a container runtime sandbox. A container runtime sandbox intercepts application system calls (by blocking system calls that attempts privileged access) and acts as the guest Kernel, without the need for translation through virtualized hardware. Just like within a VM, an application running in the sandbox gets its own kernel, distinct from the host and other sandboxes. It provides a flexible resource footprint and lower fixed cost than a full VM. However, it comes with a higher per-system call overhead and lower application compatibility. [https://cloud.google.com/blog/products/gcp/open-sourcing-gvisor-a-sandboxed-container-runtime]
 
 For now, we have decided that creating separate containers that run on our main server provides a good balance of security and practical viability.
