@@ -20,7 +20,7 @@ This is a problem because once the input stream is closed, we may not be able to
 ### Interacting wiht a Pseudo-terminal
 Creating an instance of pseudo-terminal that interacts with the REPL child process solves this problem. A pseudo-terminal emualates a command line interface within our application, so that our application will *think* that it is interacting with a terminal [https://github.com/Microsoft/node-pty] and is able to send control sequences (such as Ctrl-C). 
 
-> "Anything that is written on the master end is provided to the process on the slave end as though it was input typed on a terminal. [http://man7.org/linux/man-pages/man7/pty.7.html]"
+> "Anything that is written on the master end is provided to the process on the slave end as though it was input typed on a terminal. For example, writing the interrupt character (usually control-C) to the master device would cause an interrupt signal (SIGINT) to be generated for the foreground process group that is connected to the slave." [http://man7.org/linux/man-pages/man7/pty.7.html]
 
 With this, our application will not need to manually handle the child process' input/output streams as well as sending signals to the program to abort an evaluation while keeping the REPL running (such as terminating an infinite loop).
 Furthermore, our application will automatically capture all appropriate prompts as well as ANSI escape codes for colored output.
