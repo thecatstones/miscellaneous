@@ -1,0 +1,12 @@
+ruby 2.5.3
+crystal 0.26.1
+elm 0.19.0
+erlang 21.1.1
+golang 1.11.1
+haskell 8.6.1
+python 3.7.1
+rust 1.30.0
+nodejs 11.0.0
+java openjdk-10.0.2
+rebar 3.6.2
+docker-slim 1.22

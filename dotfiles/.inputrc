@@ -1,0 +1,49 @@
+$include /etc/inputrc
+
+set editing-mode vi
+set keymap vi
+
+# set -o vi
+
+
+
+# "\e[5~": history-search-backward
+# "\e[6~": history-search-forward
+
+set keymap vi-insert
+"\C-p": previous-history
+"\C-n": next-history
+"jk": vi-movement-mode
+
+# "\C-p": previous-history
+# "\C-n": next-history
+
+# show possible completions with different colors based on file type
+set colored-stats On
+set completion-ignore-case On
+set mark-symlinked-directories On
+set show-all-if-ambiguous On
+set show-all-if-unmodified On
+set visible-stats On
+
+
+
+# change cursor depending on vi mode
+
+# set show-mode-in-prompt on
+
+# set vi-cmd-mode-string "\1\e[2 q\2"
+# set vi-cmd-mode-string "\1\033[1 q\2"
+# set vi-ins-mode-string "\1\e[6 q\2"
+
+
+
+# "\e[9;3~": backward-kill-word
+# "\e[3;5~": shell-kill-word
+
+# "\e[1;5C": forward-word
+# "\e[1;5D": backward-word
+# "\e[5C": forward-word
+# "\e[5D": backward-word
+# "\e\e[C": forward-word
+# "\e\e[D": backward-word
